@@ -1,0 +1,144 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "hotel management",
+      "description": "My Project Application API"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "payment Management",
+        "description": "API for RECEPTIONIST in the system"
+      }
+    ],
+    "paths": {
+      "/payment/update/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "put": {
+          "summary": "Update user with give ID",
+          "tags": ["payment Management"],
+          "parameters": [
+            {
+              "name": "payment",
+              "in": "body",
+              "description": "User with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/payment"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User is updated"
+            }
+          }
+        }
+      },
+      "/payment/delete/{id}": {
+        "delete": {
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "Delete user with given ID",
+          "tags": ["payment Management"],
+          "responses": {
+            "200": {
+              "description": "User is deleted"
+            }
+          }
+        }
+      },
+      "/payment/read/{id}": {
+        "get":{
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "find user with given ID",
+          "tags": ["payment Management"],
+          "responses": {
+            "200": {
+              "description": "User Found"
+            }
+          }
+        }
+      },
+      "/payment/read": {
+        "get": {
+          "tags": ["payment Management"],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/payment/create":{
+        "post": {
+          "tags": ["payment Management"],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/payment"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created"
+            }
+          }
+        } 
+      }
+    },
+    "definitions": {
+      "payment": {
+        "properties": {
+          "roomNumber": {
+            "type": "number"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "date": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+
+
+

@@ -1,0 +1,255 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "hotel management",
+    "description": "My Project Application API"
+  },
+  "host": "localhost:1000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "guest Management",
+      "description": "API for RECEPTIONIST in the system"
+    }
+  ],
+  "paths": {
+    "/guest/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "guest Management"
+        ],
+        "parameters": [
+          {
+            "name": "guest",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/guest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated"
+          }
+        }
+      }
+    },
+    "/guest/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete user with given ID",
+        "tags": [
+          "guest Management"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted"
+          }
+        }
+      }
+    },
+    "/guest/read/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find user with given ID",
+        "tags": [
+          "guest Management"
+        ],
+        "responses": {
+          "200": {
+            "description": "User Found"
+          }
+        }
+      }
+    },
+    "/guest/read": {
+      "get": {
+        "tags": [
+          "guest Management"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/guest/create": {
+      "post": {
+        "tags": [
+          "guest Management"
+        ],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/guest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created"
+          }
+        }
+      }
+    },
+    "/guest/occupiedRoom": {
+      "get": {
+        "tags": [
+          "Functions"
+        ],
+        "summary": "Show Occupied rooms",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/guest/checkIn/{number}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "number",
+          "required": true,
+          "description": "ROOM NUMBER TO BOOK",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "CHECK-IN",
+        "tags": [
+          "Functions"
+        ],
+        "responses": {
+          "200": {
+            "description": "CHECKED-IN"
+          }
+        }
+      }
+    },
+    "/guest/checkOut/{number}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "number",
+          "required": true,
+          "description": "ROOM NUMBER TO CHECKOUT",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "CHECK-OUT",
+        "tags": [
+          "Functions"
+        ],
+        "responses": {
+          "200": {
+            "description": "CHECKED-OUT"
+          }
+        }
+      }
+    },
+    "/guest/availableRoom": {
+      "get": {
+        "tags": [
+          "Functions"
+        ],
+        "summary": "Show avalable rooms",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+   
+  },
+  "definitions": {
+    "guest": {
+      "properties": {
+        "roomNumber": {
+          "type": "number"
+        },
+        "guest": {
+          "type": "number"
+        },
+        "personal": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "identity": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "number"
+            }
+          }
+        },
+        "timeline": {
+          "properties": {
+            "timeIn": {
+              "type": "string"
+            },
+            "timeOut": {
+              "type": "string"
+            },
+            "days": {
+              "type": "number"
+            }
+          }
+        },
+        "payment": {
+          "properties": {
+            "total": {
+              "type": "number"
+            },
+            "paid": {
+              "type": "number"
+            },
+            "balance": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

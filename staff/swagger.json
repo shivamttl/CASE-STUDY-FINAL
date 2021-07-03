@@ -1,0 +1,164 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "hotel management",
+      "description": "My Project Application API"
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Staff Management",
+        "description": "API for OWNERS in the system"
+      }
+    ],
+    "paths": {
+      "/staff/update/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "put": {
+          "summary": "Update user with give ID",
+          "tags": ["Staff Management"],
+          "parameters": [
+            {
+              "name": "Staff",
+              "in": "body",
+              "description": "User with new values of properties"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User is updated",
+              "schema": {
+                "$ref": "#/definitions/Staff"
+              }
+            }
+          }
+        }
+      },
+      "/staff/delete/{id}": {
+        "delete": {
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "Delete user with given ID",
+          "tags": ["Staff Management"],
+          "responses": {
+            "200": {
+              "description": "User is deleted",
+              "schema": {
+                "$ref": "#/definitions/Staff"
+              }
+            }
+          }
+        }
+      },
+      "/staff/read/{id}": {
+        "get":{
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "find user with given ID",
+          "tags": ["Staff Management"],
+          "responses": {
+            "200": {
+              "description": "User Found",
+              "schema": {
+                "$ref": "#/definitions/Staff"
+              }
+            }
+          }
+        }
+      },
+      "/staff/read": {
+        "get": {
+          "tags": ["Staff Management"],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/staff/totalSalary": {
+        "get": {
+          "tags": ["Salary Report"],
+          "summary": "Get total Salary of the all staff",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/staff/create":{
+        "post": {
+          "tags": ["Staff Management"],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Staff"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema": {
+                "$ref": "#/definitions/Staff"
+              }
+            }
+          }
+        } 
+      }
+    },
+    "definitions": {
+      "Staff": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "empid": {
+            "type": "number"
+          },
+          "designation": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "number"
+          },
+          "age": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+
+
+

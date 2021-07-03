@@ -1,0 +1,141 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "hotel management",
+      "description": "My Project Application API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "inventory Management",
+        "description": "API for MANAGERS in the system"
+      }
+    ],
+    "paths": {
+      "/inventory/update/{id}": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "put": {
+          "summary": "Update user with give ID",
+          "tags": ["inventory Management"],
+          "parameters": [
+            {
+              "name": "inventory",
+              "in": "body",
+              "description": "User with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/inventory"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User is updated"
+            }
+          }
+        }
+      },
+      "/inventory/delete/{id}": {
+        "delete": {
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "Delete user with given ID",
+          "tags": ["inventory Management"],
+          "responses": {
+            "200": {
+              "description": "User is deleted"
+            }
+          }
+        }
+      },
+      "/inventory/read/{id}": {
+        "get":{
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "find user with given ID",
+          "tags": ["inventory Management"],
+          "responses": {
+            "200": {
+              "description": "User Found"
+            }
+          }
+        }
+      },
+      "/inventory/read": {
+        "get": {
+          "tags": ["inventory Management"],
+          "summary": "Get all users in system",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/inventory/create":{
+        "post": {
+          "tags": ["inventory Management"],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/inventory"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created"
+            }
+          }
+        } 
+      }
+    },
+    "definitions": {
+      "inventory": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "roomNumber": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+
+
+

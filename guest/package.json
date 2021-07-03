@@ -1,0 +1,27 @@
+{
+  "name": "guest",
+  "version": "1.0.0",
+  "main": "guest.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "nodemon": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14",
+    "nodemailer": "^6.6.2",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7"
+  }
+}

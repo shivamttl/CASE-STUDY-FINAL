@@ -1,0 +1,952 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "HOTEL MANAGEMENT SYSTEM",
+    "description": "By: SHIVA MITTAL",
+    "license": {
+      "name": "PAYMENT GATEWAY",
+      "url": "http://localhost:5000/payments/"
+    }
+  },
+  "host": "localhost:7000",
+  "basePath": "/",
+  "paths": {
+    "/logout": {
+      "get": {
+        "tags": [
+          "LOGIN/LOGOUT"
+        ],
+        "summary": "LOGOUT",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "LOGIN/LOGOUT"
+        ],
+        "summary": "LOGIN",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SUCCESSFULLY LOGGED IN"
+          }
+        }
+      }
+    },
+    "/showusers": {
+      "get": {
+        "tags": [
+          "OWNER"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/showuser/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find user with given ID",
+        "tags": [
+          "OWNER"
+        ],
+        "responses": {
+          "200": {
+            "description": "User Found"
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete user with given ID",
+        "tags": [
+          "OWNER"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted"
+          }
+        }
+      }
+    },
+    "/createuser": {
+      "post": {
+        "tags": [
+          "OWNER"
+        ],
+        "summary": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created"
+          }
+        }
+      }
+    },
+    "/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "OWNER"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/signup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated"
+          }
+        }
+      }
+    },
+   
+    
+    "/room/occupiedRoom": {
+      "get": {
+        "tags": [
+          "RECEPTION"
+        ],
+        "summary": "Show Occupied rooms",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/room/checkIn/{number}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "number",
+          "required": true,
+          "description": "ROOM NUMBER TO BOOK",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "CHECK-IN",
+        "tags": [
+          "RECEPTION"
+        ],
+        "responses": {
+          "200": {
+            "description": "CHECKED-IN"
+          }
+        }
+      }
+    },
+    "/room/checkOut/{number}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "number",
+          "required": true,
+          "description": "ROOM NUMBER TO CHECKOUT",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "CHECK-OUT",
+        "tags": [
+          "RECEPTION"
+        ],
+        "responses": {
+          "200": {
+            "description": "CHECKED-OUT"
+          }
+        }
+      }
+    },
+    "/room/availableRoom": {
+      "get": {
+        "tags": [
+          "RECEPTION"
+        ],
+        "summary": "Show avalable rooms",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/room/roomReport": {
+      "get": {
+        "tags": ["MANAGER"],
+        "summary": "Get Report",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/room/read": {
+      "get": {
+        "tags": ["MANAGER"],
+        "summary": "Get all Rooms in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/room/read/{id}": {
+      "get":{
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Room that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find Room with given ID",
+        "tags": ["MANAGER"],
+        "responses": {
+          "200": {
+            "description": "Room Found"
+          }
+        }
+      }
+    },
+    "/room/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of Room that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update Room with give ID",
+        "tags": [
+          "MANAGER"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Room with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/room"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room is updated"
+          }
+        }
+      }
+    },
+    
+      "/room/delete/{id}": {
+        "delete": {
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "description": "ID of Room that we want to find",
+              "type": "string"
+            }
+          ],
+          "summary": "Delete Room with given ID",
+          "tags": ["MANAGER"],
+          "responses": {
+            "200": {
+              "description": "Room is deleted"
+            }
+          }
+        }
+      } ,
+    "/room/create":{
+      "post": {
+        "tags": ["MANAGER"],
+        "description": "Create new Room in system",
+        "summary": "Create new Room in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Room that we want to create",
+            "schema": {
+              "$ref": "#/definitions/room"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Room is created"
+          }
+        }
+      }
+    },
+
+
+
+
+
+    "/inventory/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of Inventory that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update Inventory with give ID",
+        "tags": ["MANAGER"],
+        "parameters": [
+          {
+            "name": "inventory",
+            "in": "body",
+            "description": "Inventory with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/inventory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated"
+          }
+        }
+      }
+    },
+
+    "/inventory/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Inventory that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete Inventory with given ID",
+        "tags": ["MANAGER"],
+        "responses": {
+          "200": {
+            "description": "Inventory is deleted"
+          }
+        }
+      }
+    },
+    "/inventory/read/{id}": {
+      "get":{
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Inventory that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find Inventory with given ID",
+        "tags": ["MANAGER"],
+        "responses": {
+          "200": {
+            "description": "Inventory Found"
+          }
+        }
+      }
+    },
+    "/inventory/read": {
+      "get": {
+        "tags": ["MANAGER"],
+        "summary": "Get all Inventories in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/inventory/create":{
+      "post": {
+        "tags": ["MANAGER"],
+        "summary":"Create new Inventory in system",
+        "description": "Create new Inventory in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Inventory that we want to create",
+            "schema": {
+              "$ref": "#/definitions/inventory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Inventory is created"
+          }
+        }
+      } 
+    },
+    
+
+
+
+    "/staff/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of  Staff that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update Staff with give ID",
+        "tags": ["OWNER"],
+        "parameters": [
+          {
+            "name": "Staff",
+            "in": "body",
+            "description": "Enter new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Staff"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " Staff is updated"
+          }
+        }
+      }
+    },
+    "/staff/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of  Staff that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete  Staff with given ID",
+        "tags": ["OWNER"],
+        "responses": {
+          "200": {
+            "description": " Staff is deleted"
+          }
+        }
+      }
+    },
+    "/staff/read/{id}": {
+      "get":{
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of  Staff that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find Staff with given ID",
+        "tags": ["OWNER"],
+        "responses": {
+          "200": {
+            "description": " Staff Found"
+          }
+        }
+      }
+    },
+    "/staff/read": {
+      "get": {
+        "tags": ["OWNER"],
+        "summary": "Get all Staff in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/staff/totalSalary": {
+      "get": {
+        "tags": ["OWNER"],
+        "summary": "Get total Salary of the all staff",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/staff/create":{
+      "post": {
+        "tags": ["OWNER"],
+        "summary": "Create new Staff in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": " Staff that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Staff"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Staff is created"
+          }
+        }
+      } 
+    },
+
+
+
+    "/payment/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of Payment that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update Payment with give ID",
+        "tags": ["RECEPTION"],
+        "parameters": [
+          {
+            "name": "payment",
+            "in": "body",
+            "description": "Payment with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment is updated"
+          }
+        }
+      }
+    },
+    "/payment/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Payment that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete Payment with given ID",
+        "tags": ["RECEPTION"],
+        "responses": {
+          "200": {
+            "description": "Payment is deleted"
+          }
+        }
+      }
+    },
+    "/payment/read/{id}": {
+      "get":{
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Payment that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find Payment with given ID",
+        "tags": ["RECEPTION"],
+        "responses": {
+          "200": {
+            "description": "Payment Found"
+          }
+        }
+      }
+    },
+    "/payment/read": {
+      "get": {
+        "tags": ["RECEPTION"],
+        "summary": "Get all Payment in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/payment/create":{
+      "post": {
+        "tags": ["RECEPTION"],
+        "summary":"Create new Payment in system",
+        "description": "Create new Payment in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Payment that we want to create",
+            "schema": {
+              "$ref": "#/definitions/payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Payment is created"
+          }
+        }
+      } 
+    },
+
+
+    "/guest/update/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update Guest with give ID",
+        "tags": [
+          "RECEPTION"
+        ],
+        "parameters": [
+          {
+            "name": "guest",
+            "in": "body",
+            "description": "Guest with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/guest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Guest is updated"
+          }
+        }
+      }
+    },
+    "/guest/delete/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Guest that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "Delete Guest with given ID",
+        "tags": [
+          "RECEPTION"
+        ],
+        "responses": {
+          "200": {
+            "description": "Guest is deleted"
+          }
+        }
+      }
+    },
+    "/guest/read/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of Guest that we want to find",
+            "type": "string"
+          }
+        ],
+        "summary": "find Guest with given ID",
+        "tags": [
+          "RECEPTION"
+        ],
+        "responses": {
+          "200": {
+            "description": "Guest Found"
+          }
+        }
+      }
+    },
+    "/guest/read": {
+      "get": {
+        "tags": [
+          "RECEPTION"
+        ],
+        "summary": "Get all Guests in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/guest/create": {
+      "post": {
+        "tags": [
+          "RECEPTION"
+        ],
+        "summary": "Create new Guest in system",
+        "description": "Create new Guest in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Guest that we want to create",
+            "schema": {
+              "$ref": "#/definitions/guest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Guest is created"
+          }
+        }
+      }
+    }
+
+
+  },
+  "definitions": {
+    "inventory": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "roomNumber": {
+          "type": "number"
+        }
+      }
+    },
+    "signup": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "login": {
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "room": {
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "number": {
+          "type": "number"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "size": {
+          "type": "number"
+        },
+        "available": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Staff": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "empid": {
+          "type": "number"
+        },
+        "designation": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "number"
+        },
+        "age": {
+          "type": "number"
+        }
+      }
+    },
+    "payment": {
+      "properties": {
+        "roomNumber": {
+          "type": "number"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "date": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        }
+      }
+    },
+    "guest": {
+      "properties": {
+        "roomNumber": {
+          "type": "number"
+        },
+        "guest": {
+          "type": "number"
+        },
+        "personal": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "identity": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "number"
+            }
+          }
+        },
+        "timeline": {
+          "properties": {
+            "timeIn": {
+              "type": "string"
+            },
+            "timeOut": {
+              "type": "string"
+            },
+            "days": {
+              "type": "number"
+            }
+          }
+        },
+        "payment": {
+          "properties": {
+            "total": {
+              "type": "number"
+            },
+            "paid": {
+              "type": "number"
+            },
+            "balance": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}
